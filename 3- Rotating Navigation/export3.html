@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+			integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<style>
+			* {
+				overflow-x: hidden;
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			body {
+				background-color: rgb(29, 29, 29);
+				margin: 0;
+			}
+
+			main {
+				padding: 40px;
+				position: relative;
+				background-color: white;
+				transition: transform 0.5s ease-in;
+				transform-origin: top left;
+			}
+
+			.circleMenu {
+				position: absolute;
+				left: 10px;
+				top: 10px;
+				background-color: coral;
+				width: 3em;
+				height: 3em;
+				border-radius: 50%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+			}
+
+			.content {
+				height: 100vh;
+				overflow: hidden;
+			}
+
+			.menuInactive {
+				display: none;
+			}
+
+			main div.circleMenu a {
+				color: black;
+				transition: 0.2s;
+			}
+			.linksMenu {
+				position: absolute;
+				/* top: clamp(30px, 70vh, 80vh); */
+				top: 83vh;
+				left: 0px;
+				transform: translateX(-200px);
+				transition: 1s;
+			}
+
+			.linksMenuActive {
+				transform: translateX(0px);
+			}
+
+			.linksMenu > ul > li > a,
+			.linksMenu > ul > li {
+				text-decoration: none;
+				list-style: none;
+				color: white;
+				font-family: Arial, Helvetica, sans-serif;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+				font-weight: bold;
+				border-radius: 15px;
+				padding: 0.5em;
+				transition: background-color 0.2s;
+			}
+
+			.linksMenu > ul > li > a:hover {
+				background-color: coral;
+			}
+
+			.rotateContent {
+				transform: rotate(-20deg);
+			}
+		</style>
+		<title>My Project</title>
+	</head>
+	<body>
+		<div class="linksMenu">
+			<ul>
+				<li>
+					<a href="#"><i class="fas fa-home"></i> Home</a>
+				</li>
+				<li>
+					<a href="#"><i class="fas fa-book"></i> About</a>
+				</li>
+				<li>
+					<a href="#"><i class="fas fa-phone"></i> Contact</a>
+				</li>
+			</ul>
+		</div>
+		<main>
+			<div class="circleMenu">
+				<a href="#" id="burguer"><i class="fas fa-hamburger"></i></a>
+				<a href="#" class="menuInactive" id="close"
+					><i class="fas fa-close"></i
+				></a>
+			</div>
+
+			<div class="content">
+				<h1>Doggie dog</h1>
+				<h2>Little dumb doggie dog</h2>
+				<p>
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta
+					corrupti autem officiis cum nisi optio, assumenda alias inventore
+					rerum error, ipsam dolore ducimus quisquam ullam nostrum quo modi sed
+					officia harum ut nam delectus nulla minima voluptate! Exercitationem
+					veritatis, reiciendis debitis nemo impedit corporis ut sapiente rem
+					nisi, inventore corrupti dicta, nihil obcaecati tenetur totam unde
+					sunt? Praesentium ab quia ad maiores, deleniti quae ea nihil unde
+					ipsam nobis omnis amet perferendis obcaecati, quos fugiat totam. Eum,
+					reprehenderit adipisci. Sed tenetur omnis officia voluptatem ducimus,
+					delectus quasi cupiditate quos itaque? Quibusdam, asperiores doloribus
+					architecto amet sapiente ratione laboriosam natus eligendi nobis
+					quisquam nam inventore nesciunt, libero rem explicabo delectus unde
+					nisi voluptatum debitis! Nostrum nesciunt provident animi. Cum
+					incidunt maiores eum praesentium repellat earum maxime? Quaerat
+					nesciunt quo labore maiores, nobis eveniet soluta adipisci, commodi
+					velit vero at! Eos expedita earum reprehenderit harum ipsa. Neque
+					provident suscipit blanditiis facere pariatur repellendus cupiditate
+					quam illo? Explicabo dolores ipsum hic provident nisi labore, facere
+					tempore libero voluptates aperiam eaque, veritatis optio maiores,
+					temporibus eum facilis! Quidem voluptatum tenetur libero, repudiandae
+					mollitia distinctio error nostrum odit expedita maxime quisquam
+					aperiam iure? In mollitia totam earum rerum molestias alias excepturi
+					iste nesciunt officia ducimus.
+				</p>
+			</div>
+		</main>
+
+		<script>
+			const circleMenu = document.querySelector('.circleMenu');
+			const burguerBtn = document.querySelector('#burguer');
+			const closeBtn = document.querySelector('#close');
+			const main = document.querySelector('main');
+			const linksMenu = document.querySelector('.linksMenu');
+			let alturaViewPort = window.innerHeight;
+
+			linksMenu.style.top = `${alturaViewPort * 0.8}px`;
+
+			function toggleMenu() {
+				burguerBtn.classList.toggle('menuInactive');
+				closeBtn.classList.toggle('menuInactive');
+				main.classList.toggle('rotateContent');
+				linksMenu.classList.toggle('linksMenuActive');
+				linksMenu.style.top = `${alturaViewPort * 0.8}px`;
+			}
+
+			circleMenu.addEventListener('click', toggleMenu);
+		</script>
+	</body>
+</html>

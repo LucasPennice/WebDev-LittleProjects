@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+input,
+textarea,
+button,
+select,
+a {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+::selection {
+	background-color: orange;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	margin: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.container {
+	display: flex;
+	width: 90vw;
+	justify-content: center;
+}
+
+.container > * {
+	border-radius: 50px;
+	height: 50vh;
+	background-position: bottom;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	margin: 1em;
+	position: relative;
+	width: 5vw;
+	transition: width 0.5s cubic-bezier(0.44, 0.6, 0.25, 0.75);
+	box-shadow: 0px 0px 10px black;
+}
+
+div div h3 {
+	font-size: 1.5em;
+	position: absolute;
+	bottom: -70px;
+	color: white;
+	font-weight: bold;
+	opacity: 0;
+	transition: opacity 0.7s;
+}
+
+.panel.active {
+	width: 35vw;
+	border-radius: 60px;
+}
+
+.panel.active h3 {
+	opacity: 1;
+	color: black;
+}
+
+@media (max-width: 550px) {
+	.container {
+		flex-direction: column;
+		align-items: center;
+	}
+	.container > * {
+		height: 5vh;
+		margin: 0.5em;
+		width: 90vw;
+		box-shadow: 0px 0px 7px black;
+		transition: height 0.5s cubic-bezier(0.44, 0.6, 0.25, 0.75);
+	}
+	.panel.active {
+		width: 90vw;
+		height: 50vw;
+		border-radius: 30px;
+	}
+	div div h3 {
+		color: rgba(255, 255, 255, 0);
+		bottom: 0px;
+		left: 15px;
+		opacity: 0;
+	}
+	.panel.active h3 {
+		opacity: 1;
+		color: black;
+		padding: 0.3em;
+		background-color: white;
+		border-radius: 60px;
+		box-shadow: 0px 0px 7px black;
+	}
+}

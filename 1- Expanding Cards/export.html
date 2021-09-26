@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+			integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+			input,
+			textarea,
+			button,
+			select,
+			a {
+				-webkit-tap-highlight-color: transparent;
+			}
+			* {
+				box-sizing: border-box;
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			::selection {
+				background-color: orange;
+			}
+
+			body {
+				font-family: 'Roboto', sans-serif;
+				margin: 0;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+
+			.container {
+				display: flex;
+				width: 90vw;
+				justify-content: center;
+			}
+
+			.container > * {
+				border-radius: 50px;
+				height: 50vh;
+				background-position: bottom;
+				background-repeat: no-repeat;
+				cursor: pointer;
+				margin: 1em;
+				position: relative;
+				width: 5vw;
+				transition: width 0.5s cubic-bezier(0.44, 0.6, 0.25, 0.75);
+				box-shadow: 0px 0px 10px black;
+			}
+
+			div div h3 {
+				font-size: 1.5em;
+				position: absolute;
+				bottom: -70px;
+				color: white;
+				font-weight: bold;
+				opacity: 0;
+				transition: opacity 0.7s;
+			}
+
+			.panel.active {
+				width: 35vw;
+				border-radius: 60px;
+			}
+
+			.panel.active h3 {
+				opacity: 1;
+				color: black;
+			}
+
+			@media (max-width: 550px) {
+				.container {
+					flex-direction: column;
+					align-items: center;
+				}
+				.container > * {
+					height: 5vh;
+					margin: 0.5em;
+					width: 90vw;
+					box-shadow: 0px 0px 7px black;
+					transition: height 0.5s cubic-bezier(0.44, 0.6, 0.25, 0.75);
+				}
+				.panel.active {
+					width: 90vw;
+					height: 50vw;
+					border-radius: 30px;
+				}
+				div div h3 {
+					color: rgba(255, 255, 255, 0);
+					bottom: 0px;
+					left: 15px;
+					opacity: 0;
+				}
+				.panel.active h3 {
+					opacity: 1;
+					color: black;
+					padding: 0.3em;
+					background-color: white;
+					border-radius: 60px;
+					box-shadow: 0px 0px 7px black;
+				}
+			}
+		</style>
+		<title>Expanding Cards</title>
+	</head>
+	<body>
+		<div class="container">
+			<div
+				class="panel active"
+				style="
+					background-image: url(https://images.unsplash.com/photo-1632222795196-d3f12fa5084c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80);
+				"
+			>
+				<h3>test</h3>
+			</div>
+			<div
+				class="panel"
+				style="
+					background-image: url(https://images.unsplash.com/photo-1632289652919-1797f5786950?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=686&q=80);
+				"
+			>
+				<h3>whaevs</h3>
+			</div>
+			<div
+				class="panel"
+				style="
+					background-image: url(https://images.unsplash.com/photo-1632297174075-88bf9f2ae509?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=735&q=80);
+				"
+			>
+				<h3>whaevs</h3>
+			</div>
+			<div
+				class="panel"
+				style="
+					background-image: url(https://images.unsplash.com/photo-1632032042135-1f4c11f53141?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80);
+				"
+			>
+				<h3>whaevs</h3>
+			</div>
+			<div
+				class="panel"
+				style="
+					background-image: url(https://images.unsplash.com/photo-1559018814-f171c946fd93?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=705&q=80);
+				"
+			>
+				<h3>whaevs</h3>
+			</div>
+		</div>
+		<script>
+			const panels = document.querySelectorAll('.panel');
+
+			function removeActiveClasses() {
+				for (let panel of panels) {
+					panel.classList.remove('active');
+				}
+			}
+
+			for (let panel of panels) {
+				panel.addEventListener('click', () => {
+					removeActiveClasses();
+					panel.classList.add('active');
+				});
+			}
+		</script>
+	</body>
+</html>

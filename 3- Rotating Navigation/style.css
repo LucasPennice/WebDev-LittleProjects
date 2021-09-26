@@ -1,0 +1,78 @@
+* {
+	overflow-x: hidden;
+}
+
+body {
+	background-color: rgb(29, 29, 29);
+	margin: 0;
+}
+
+main {
+	padding: 40px;
+	position: relative;
+	background-color: white;
+	transition: transform 0.5s ease-in;
+	transform-origin: top left;
+}
+
+.circleMenu {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	background-color: coral;
+	width: 3em;
+	height: 3em;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.content {
+	height: 100vh;
+	overflow: hidden;
+}
+
+.menuInactive {
+	display: none;
+}
+
+main div.circleMenu a {
+	color: black;
+	transition: 0.2s;
+}
+.linksMenu {
+	position: absolute;
+	/* top: clamp(30px, 70vh, 80vh); */
+	top: 83vh;
+	left: 0px;
+	transform: translateX(-200px);
+	transition: 1s;
+}
+
+.linksMenuActive {
+	transform: translateX(0px);
+}
+
+.linksMenu > ul > li > a,
+.linksMenu > ul > li {
+	text-decoration: none;
+	list-style: none;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	font-weight: bold;
+	border-radius: 15px;
+	padding: 0.5em;
+	transition: background-color 0.2s;
+}
+
+.linksMenu > ul > li > a:hover {
+	background-color: coral;
+}
+
+.rotateContent {
+	transform: rotate(-20deg);
+}

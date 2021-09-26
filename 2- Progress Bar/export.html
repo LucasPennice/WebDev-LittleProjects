@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+			integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+			* {
+				box-sizing: border-box;
+			}
+
+			:root {
+				--activeColor: #ba1200;
+				--unactiveBtn: #031927;
+				--dormantColor: #9c9c9c;
+			}
+
+			::selection {
+				background-color: orange;
+			}
+
+			body {
+				font-family: 'Roboto', sans-serif;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				overflow: hidden;
+				background-color: #c8e0f4;
+			}
+
+			.generalContainer {
+				width: clamp(12em, 20vw, 20vw);
+			}
+
+			.progBar {
+				background-color: var(--activeColor);
+				height: 4px;
+				width: 0%;
+				position: absolute;
+				transform: translateY(-50%);
+				top: 50%;
+				left: 0%;
+				z-index: -1;
+				box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.349);
+				transition: width 0.3s cubic-bezier(0.79, 0.43, 0.33, 0.75);
+			}
+
+			.numberContainer::before {
+				content: '';
+				background-color: var(--dormantColor);
+				position: absolute;
+				top: 50%;
+				left: 0%;
+				transform: translateY(-50%);
+				height: 4px;
+				width: clamp(12em, 20vw, 20vw);
+				z-index: -1;
+			}
+			.numberContainer {
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 40px;
+				position: relative;
+			}
+
+			.numbers {
+				background-color: rgb(235, 235, 235);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border: solid 2px var(--dormantColor);
+				color: var(--dormantColor);
+				border-radius: 50%;
+				width: 2rem;
+				height: 2rem;
+				transition: font-weight 0.3s, border 0.3s ease-out, color 0.3s,
+					box-shadow 0.3s;
+				box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.349);
+			}
+
+			.numbers.numberActive {
+				border: solid 3px var(--activeColor);
+				color: var(--activeColor);
+				background-color: white;
+				box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.349);
+				font-weight: bold;
+			}
+
+			.buttonContainer {
+				display: flex;
+				justify-content: center;
+				gap: 15px;
+			}
+
+			.formBtn {
+				width: clamp(8em, 20vw, 20vw);
+				height: 30px;
+				border-radius: 15px;
+				border: none;
+				background-color: var(--unactiveBtn);
+				color: white;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				transition: 0.2s;
+			}
+
+			.formBtn:disabled {
+				background-color: #508aa8;
+			}
+			.formBtn:disabled:hover {
+				transform: scale(1);
+				box-shadow: none;
+				background-color: #508aa8;
+			}
+
+			.formBtn:hover {
+				transform: scale(1.1);
+				box-shadow: 0px 1px 5px black;
+				background-color: #031927ef;
+			}
+			.formBtn:active {
+				transform: scale(1);
+				box-shadow: none;
+			}
+		</style>
+		<title>Progress Bar for Form</title>
+	</head>
+	<body>
+		<div class="generalContainer">
+			<div class="numberContainer">
+				<div class="progBar"></div>
+				<div class="numbers numberActive">1</div>
+				<div class="numbers">2</div>
+				<div class="numbers">3</div>
+				<div class="numbers">4</div>
+			</div>
+			<div class="buttonContainer">
+				<button class="formBtn" disabled>Prev</button>
+				<button class="formBtn">Next</button>
+			</div>
+		</div>
+		<script>
+			const formBtns = document.querySelectorAll('.formBtn');
+			const numbers = document.querySelectorAll('.numbers');
+			const progressBar = document.querySelector('.progBar');
+			let progressValue = {
+				lastActiveNumber: 1,
+				maxValue: 5,
+			};
+
+			function modifyValue(value) {
+				if (progressValue.lastActiveNumber + value < 1) {
+					return 1;
+				}
+				if (progressValue.lastActiveNumber + value > 4) {
+					return maxValue - 1;
+				}
+
+				if (progressValue.lastActiveNumber + value === 1) {
+					formBtns[0].disabled = true;
+				} else if (progressValue.lastActiveNumber + value === 4) {
+					formBtns[1].disabled = true;
+				} else {
+					formBtns[0].disabled = false;
+					formBtns[1].disabled = false;
+				}
+				progressValue.lastActiveNumber = progressValue.lastActiveNumber + value;
+
+				updateAppearance(progressValue.lastActiveNumber);
+				console.log(progressValue.lastActiveNumber);
+				return progressValue.lastActiveNumber;
+			}
+
+			function updateAppearance(circle) {
+				circle--;
+				for (i = circle; i < progressValue.maxValue; i++) {
+					numbers[i].classList.remove('numberActive');
+					numbers[circle].classList.add('numberActive');
+					progressBar.style.width = `${circle * 33}%`;
+				}
+			}
+
+			formBtns[0].addEventListener('click', () => {
+				modifyValue(-1);
+			});
+
+			formBtns[1].addEventListener('click', () => {
+				modifyValue(1);
+			});
+		</script>
+	</body>
+</html>

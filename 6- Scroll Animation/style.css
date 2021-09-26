@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+	-webkit-tap-highlight-color: transparent;
+	box-sizing: border-box;
+}
+
+::selection {
+	background-color: orange;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	gap: 1em;
+	margin: 2em 0 20em 0;
+}
+
+.dooDooContainer {
+	background-color: coral;
+	padding: 2em;
+	border-radius: 20px;
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.479);
+	color: white;
+	font-size: 1em;
+	text-transform: uppercase;
+	transition: transform 0.8s ease-in;
+	transform: translateX(0px);
+}
+
+.dooDooAway:nth-of-type(odd) {
+	transform: translateX(100vw);
+}
+
+.dooDooAway:nth-of-type(even) {
+	transform: translateX(-100vw);
+}
